@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc -w",
-    "start-docker": "node program.js",
-    "start": "node ./dist/program.js"
+    "start": "node program.js",
+    "start-local": "node ./dist/program.js"
   },
   "keywords": [],
   "author": "",

@@ -27,10 +27,10 @@ class StartUp {
         this.app.use(bodyParser.urlencoded({ extended: false }));
     }
     routes() {
-        this.app.use(auth_1.default.validade);
         this.app.route('/').get((req, res) => {
             res.send({ versao: '0.0.1' });
         });
+        this.app.use(auth_1.default.validade);
         this.app.route('/api/v1/news').get(newsController_1.default.get);
         this.app.route('/api/v1/news/:id').get(newsController_1.default.getById);
         this.app.route('/api/v1/news').post(newsController_1.default.create);

@@ -38,11 +38,11 @@ class StartUp{
 
     routes(){
 
-        this.app.use( Auth.validade );
-
         this.app.route( '/' ).get( (req, res) => {
             res.send( {versao: '0.0.1'} );
         });
+
+        this.app.use( Auth.validade );
     
         this.app.route( '/api/v1/news' ).get( NewsController.get );
         this.app.route( '/api/v1/news/:id' ).get( NewsController.getById );

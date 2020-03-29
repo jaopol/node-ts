@@ -4,6 +4,7 @@ import * as cors from 'cors';
 
 import Database from './infra/db';
 import NewsController from './controller/newsController';
+import Auth from './infra/auth';
 
 class StartUp{
 
@@ -36,6 +37,9 @@ class StartUp{
     }
 
     routes(){
+
+        this.app.use( Auth.validade );
+
         this.app.route( '/' ).get( (req, res) => {
             res.send( {versao: '0.0.1'} );
         });

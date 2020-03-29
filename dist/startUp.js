@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const db_1 = require("./infra/db");
 const newsController_1 = require("./controller/newsController");
+const auth_1 = require("./infra/auth");
 class StartUp {
     constructor() {
         this.app = express();
@@ -26,6 +27,7 @@ class StartUp {
         this.app.use(bodyParser.urlencoded({ extended: false }));
     }
     routes() {
+        this.app.use(auth_1.default.validade);
         this.app.route('/').get((req, res) => {
             res.send({ versao: '0.0.1' });
         });

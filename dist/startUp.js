@@ -6,6 +6,7 @@ const cors = require("cors");
 const db_1 = require("./infra/db");
 const newsController_1 = require("./controller/newsController");
 const auth_1 = require("./infra/auth");
+const uploads_1 = require("./infra/uploads");
 class StartUp {
     constructor() {
         this.app = express();
@@ -29,6 +30,14 @@ class StartUp {
     routes() {
         this.app.route('/').get((req, res) => {
             res.send({ versao: '0.0.1' });
+        });
+        this.app.route("/uploads").post(uploads_1.default.single("file"), (req, res) => {
+            try {
+                res.send("Arquivo enviado com sucesso!");
+            }
+            catch (error) {
+                console.log(error);
+            }
         });
         this.app.use(auth_1.default.validade);
         this.app.route('/api/v1/news').get(newsController_1.default.get);

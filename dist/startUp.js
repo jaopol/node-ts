@@ -31,7 +31,7 @@ class StartUp {
         this.app.route('/').get((req, res) => {
             res.send({ versao: '0.0.1' });
         });
-        this.app.route("/uploads").post(uploads_1.default.single("file"), (req, res) => {
+        this.app.route("/uploads").post(uploads_1.default.storage().single("file"), (req, res) => {
             try {
                 res.send("Arquivo enviado com sucesso!");
             }

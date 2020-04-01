@@ -3,9 +3,9 @@ import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 
 import Database from './infra/db';
-import NewsController from './controller/newsController';
 import Auth from './infra/auth';
 import Uploads from './infra/uploads';
+import newsRouter from './routers/newsRouters';
 
 class StartUp{
 
@@ -52,14 +52,8 @@ class StartUp{
             }
         });
 
-        this.app.use( Auth.validade );
-    
-        this.app.route( '/api/v1/news' ).get( NewsController.get );
-        this.app.route( '/api/v1/news/:id' ).get( NewsController.getById );
-        this.app.route( '/api/v1/news' ).post( NewsController.create );
-        this.app.route( '/api/v1/news/:id' ).put( NewsController.update );
-        this.app.route( '/api/v1/news/:id' ).delete( NewsController.delete );
-
+        this.app.use( Auth.validade );       
+        this.app.use( "/", newsRouter );       
     }
 
 }

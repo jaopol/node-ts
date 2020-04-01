@@ -4,9 +4,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const db_1 = require("./infra/db");
-const newsController_1 = require("./controller/newsController");
 const auth_1 = require("./infra/auth");
 const uploads_1 = require("./infra/uploads");
+const newsRouters_1 = require("./routers/newsRouters");
 class StartUp {
     constructor() {
         this.app = express();
@@ -40,11 +40,7 @@ class StartUp {
             }
         });
         this.app.use(auth_1.default.validade);
-        this.app.route('/api/v1/news').get(newsController_1.default.get);
-        this.app.route('/api/v1/news/:id').get(newsController_1.default.getById);
-        this.app.route('/api/v1/news').post(newsController_1.default.create);
-        this.app.route('/api/v1/news/:id').put(newsController_1.default.update);
-        this.app.route('/api/v1/news/:id').delete(newsController_1.default.delete);
+        this.app.use("/", newsRouters_1.default);
     }
 }
 exports.default = new StartUp();

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const compression = require("compression");
 const db_1 = require("./infra/db");
 const auth_1 = require("./infra/auth");
 const uploads_1 = require("./infra/uploads");
@@ -26,6 +27,7 @@ class StartUp {
         this.enableCors();
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(compression());
     }
     routes() {
         this.app.route('/').get((req, res) => {
